@@ -14,7 +14,15 @@ export class ApiInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const apiReq = req.clone({ url: `${environment.apiUrl}${req.url}` });
+    // Do NOT double-prefix
+    if (req.url.startsWith("http")) {
+      return next.handle(req);
+    }
+
+    const apiReq = req.clone({
+      url: `${environment.apiUrl}${req.url}`,
+    });
+
     return next.handle(apiReq);
   }
 }
