@@ -3,7 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ARG FRONTEND_SERVER_API_URL
 RUN npm run build -- --configuration production
 
 
