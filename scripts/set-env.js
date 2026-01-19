@@ -4,10 +4,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const targetPath = './src/environments/environment.ts';
+const apiUrl = process.env.FRONTEND_SERVER_API_URL || '/api';
 
 const envConfigFile = `
 export const environment = {
-  apiUrl: '${process.env.FRONTEND_SERVER_API_URL}'
+  apiUrl: '${apiUrl}'
 };
 `;
 
